@@ -259,6 +259,37 @@ window.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  // Random elements resize/move on hover
+  const annoyTargets = document.querySelectorAll(
+    "button, input, select, .tip-annoy, label, h1, h2",
+  );
+  annoyTargets.forEach((el) => {
+    el.addEventListener("mouseenter", () => {
+      if (Math.random() > 0.3) {
+        // 70% chance to trigger
+        const randomScale = 0.7 + Math.random() * 0.8; // 0.7 to 1.5
+        const randomRotate = (Math.random() - 0.5) * 25; // -12.5 to 12.5 degrees
+        const randomMarginTop = (Math.random() - 0.5) * 40;
+        const randomMarginLeft = (Math.random() - 0.5) * 40;
+
+        el.style.transition = "all 0.2s ease";
+        el.style.transform = `scale(${randomScale}) rotate(${randomRotate}deg)`;
+        el.style.marginTop = `${randomMarginTop}px`;
+        el.style.marginLeft = `${randomMarginLeft}px`;
+
+        // Reset after random delay
+        setTimeout(
+          () => {
+            el.style.transform = "";
+            el.style.marginTop = "";
+            el.style.marginLeft = "";
+          },
+          600 + Math.random() * 1200,
+        );
+      }
+    });
+  });
+
   // Hover sound helpers
   let canPlaySound = true;
   function playAnnoySoundOnce() {

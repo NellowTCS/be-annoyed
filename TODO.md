@@ -2,7 +2,7 @@
 
 > (these are like 5 min todos haha for each)
 
-- [ ] Random elements resize/move on hover
+- [X] Random elements resize/move on hover
 - [ ] Text that slowly drifts or letters randomly capitalize
 - [ ] Fake loading spinners that appear everywhere
 - [ ] Inverted colors or blur filters that randomly activate
