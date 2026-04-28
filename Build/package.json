@@ -1,5 +1,5 @@
 {
-  "name": "web-template",
+  "name": "be-annoyed",
   "version": "0.1.0",
   "description": "My typical web dev starter project.",
   "main": "index.js",
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NellowTCS/Web-Template.git"
+    "url": "git+https://github.com/NellowTCS/be-annoyed.git"
   },
   "author": "NellowTCS",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/NellowTCS/Web-Template/issues"
+    "url": "https://github.com/NellowTCS/be-annoyed/issues"
   },
-  "homepage": "https://github.com/NellowTCS/Web-Template#readme",
+  "homepage": "https://github.com/NellowTCS/be-annoyed#readme",
   "dependencies": {
     "vite": "^7.1.3"
   },
@@ -28,6 +28,6 @@
     "cross-env": "^10.1.0",
     "sharp": "^0.34.4",
     "vite-plugin-pwa": "^1.0.3",
-    "vite-plugin-singlefile": "^2.3.0"
+    "vite-plugin-singlefile": "^2.3.3"
   }
 }

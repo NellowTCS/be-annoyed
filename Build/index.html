@@ -1,17 +1,145 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-
-<head>
-    <title>My Page</title>
+  <head>
+    <title>BeAnnoyed: The Website</title>
+    <meta name="author" content="NellowTCS" />
     <link rel="stylesheet" data-inline="true" href="./styles/styles.css" />
-</head>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text y=%22.9em%22 font-size=%2280%22&gt;😈&lt;/text&gt;&lt;/svg&gt;"
+    />
+  </head>
 
-<body>
+  <body>
+    <marquee scrollamount="21" direction="right" id="marquee-annoy">
+      Okay but why are you here?
+    </marquee>
+
+    <header>
+      <h1 id="beannoyed-title">BeAnnoyed<span style="opacity: 0.3">.</span></h1>
+      <h2 id="subtitle">
+        Websites are supposed to be pleasant, but why not be a little
+        insufferable?
+      </h2>
+    </header>
+
+    <nav id="nav-annoy">
+      <a href="#">Home</a>
+      <a href="#" id="nav-delay-link">Jam Info</a>
+      <a href="#" style="pointer-events: none; color: #aaa">Settings</a>
+      <a href="#form-section" id="random-scroll-link">Somewhere</a>
+      <a href="javascript:;" id="rickroll-chance-link">Click for a surprise?</a>
+    </nav>
+
+    <section id="braggy-section">
+      <div class="tip-annoy">
+        <b>Pro tip:</b> This site is
+        <span onclick="alert('No it isn\'t.')">99.9%</span> accessible<sup
+          >*</sup
+        >
+        <span class="tooltip-annoy">*</span>
+      </div>
+      <div class="tip-annoy">
+        <b>Challenge:</b> Find the hidden dark mode switch!
+      </div>
+    </section>
+
+    <section id="form-section">
+      <form id="beannoyed-form" autocomplete="off" spellcheck="false">
+        <label for="name-ish">Username</label>
+        <input
+          id="name-ish"
+          name="nickname"
+          type="text"
+          placeholder="Enter your... uh"
+          autocapitalize="off"
+          autocomplete="nope"
+        />
+        <br />
+        <label for="favcolor">Favorite color</label>
+        <input
+          id="favcolor"
+          name="favorite-color"
+          type="color"
+          value="#66ccff"
+        />
+        <br />
+        <label for="realpw">Password</label>
+        <input
+          id="realpw"
+          name="password"
+          type="text"
+          placeholder="Definitely not visible"
+          style="letter-spacing: 0.47em"
+        />
+        <br />
+        <label for="timezone">Timezone</label>
+        <select id="timezone" name="location">
+          <option value="">Pick one</option>
+          <option value="GMT">Greenwich Mean Time</option>
+          <option value="UTC">Universal Chaos</option>
+          <option value="EST">Eastern Sleep Time</option>
+          <option value="PST">Panic Standard Time</option>
+          <option value="Random">Random</option>
+        </select>
+        <br />
+        <input type="checkbox" id="annoy-mode" checked="" />
+        <label for="annoy-mode"
+          >Enable Extra Annoy Mode (unchecks itself sometimes)</label
+        >
+        <br />
+        <button type="submit" id="submit-btn">
+          Proceed (it might be fine)
+        </button>
+      </form>
+    </section>
+
+    <section id="chaos-ui">
+      <button id="shuffle-btn">Rearrange Everything</button>
+      <button id="lofi-btn">Lofi mode (not really)</button>
+      <div class="spacer-annoy"></div>
+      <button id="move-btn">Touch Me</button>
+      <label id="slider-label" for="useless-slider"
+        >How annoying (doesn't matter):</label
+      >
+      <input type="range" min="0" max="10" value="5" id="useless-slider" />
+      <span id="slider-value">5</span>
+      <div id="checkout-annoy">
+        <label
+          ><input type="radio" name="currency" value="gold" />Pay with
+          gold</label
+        >
+        <label
+          ><input type="radio" name="currency" value="exposure" checked="" />Pay
+          with exposure</label
+        >
+        <label
+          ><input type="radio" name="currency" value="bitcoin" />Pay with
+          bitcoin</label
+        >
+        <button id="pay-now-btn">Buy Now (does nothing, or does it??)</button>
+      </div>
+    </section>
+
+    <audio
+      id="hover-sound"
+      src="https://www.myinstants.com/media/sounds/mlg-airhorn.mp3"
+    ></audio>
+    <audio
+      id="ping-sound"
+      src="https://www.myinstants.com/media/sounds/vine-boom.mp3"
+    ></audio>
+    <!-- Sorry not sorry -->
+
+    <footer>
+      <div id="footer-weird">
+        This site cares about browser compatibility. (Citation needed)
+      </div>
+      <marquee behavior="alternate" direction="up" width="100%" height="80">
+        Fun fact: If you scroll, something will probably happen.
+      </marquee>
+    </footer>
+
     <script type="module" data-inline="true" src="./src/main.js"></script>
-    <h1>Hello, world!</h1>
-    <p>This is a demo page.</p>
-    <button onclick="testFunction()">Click me!</button>
-    <button onclick="outputToPage()">Show a square.</button>
-</body>
-
+  </body>
 </html>
