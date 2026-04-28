@@ -1,2 +1,3 @@
 # be-annoyed
-hehe
+
+A silly website made to annoy you beyond your limits.
