@@ -259,16 +259,14 @@ window.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Random elements resize/move on hover
   const annoyTargets = document.querySelectorAll(
     "button, input, select, .tip-annoy, label, h1, h2",
   );
   annoyTargets.forEach((el) => {
     el.addEventListener("mouseenter", () => {
       if (Math.random() > 0.3) {
-        // 70% chance to trigger
-        const randomScale = 0.7 + Math.random() * 0.8; // 0.7 to 1.5
-        const randomRotate = (Math.random() - 0.5) * 25; // -12.5 to 12.5 degrees
+        const randomScale = 0.7 + Math.random() * 0.8;
+        const randomRotate = (Math.random() - 0.5) * 25;
         const randomMarginTop = (Math.random() - 0.5) * 40;
         const randomMarginLeft = (Math.random() - 0.5) * 40;
 
@@ -277,7 +275,6 @@ window.addEventListener("DOMContentLoaded", function () {
         el.style.marginTop = `${randomMarginTop}px`;
         el.style.marginLeft = `${randomMarginLeft}px`;
 
-        // Reset after random delay
         setTimeout(
           () => {
             el.style.transform = "";
@@ -290,7 +287,73 @@ window.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Hover sound helpers
+  const driftTargets = document.querySelectorAll("p, div, span, label, h1, h2, h3");
+  driftTargets.forEach((el) => {
+    if (el.id === "footer-weird" || el.classList.contains("tooltip-annoy")) return;
+    setInterval(() => {
+      if (Math.random() > 0.7) {
+        el.style.marginLeft = `${(Math.random() - 0.5) * 30}px`;
+        el.style.transition = "margin-left 0.5s ease";
+        setTimeout(() => (el.style.marginLeft = ""), 2000);
+      }
+      if (Math.random() > 0.8) {
+        el.textContent = el.textContent
+          .split("")
+          .map((c) => (Math.random() > 0.3 ? c : c.toUpperCase()))
+          .join("");
+        setTimeout(() => {
+          el.textContent = el.textContent
+            .split("")
+            .map((c) => c.toLowerCase())
+            .join("");
+        }, 1500);
+      }
+    }, 3000 + Math.random() * 2000);
+  });
+
+  setInterval(() => {
+    if (Math.random() > 0.8) {
+      const spinner = document.createElement("div");
+      spinner.style.cssText = `
+        position: fixed;
+        width: 40px;
+        height: 40px;
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #3498db;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        left: ${Math.random() * 90}vw;
+        top: ${Math.random() * 90}vh;
+        z-index: 9999;
+        pointer-events: none;
+      `;
+      document.body.appendChild(spinner);
+      setTimeout(() => spinner.remove(), 3000 + Math.random() * 2000);
+    }
+  }, 4000);
+
+  const style = document.createElement("style");
+  style.textContent = `@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }`;
+  document.head.appendChild(style);
+
+  const cloneTargets = document.querySelectorAll("button, .tip-annoy, label");
+  cloneTargets.forEach((el) => {
+    el.addEventListener("click", (e) => {
+      if (Math.random() > 0.5) {
+        e.preventDefault();
+        const clone = el.cloneNode(true);
+        clone.style.position = "absolute";
+        clone.style.left = `${Math.random() * 80}vw`;
+        clone.style.top = `${Math.random() * 80}vh`;
+        clone.style.opacity = "0.7";
+        clone.style.zIndex = "1000";
+        clone.style.pointerEvents = "none";
+        document.body.appendChild(clone);
+        setTimeout(() => clone.remove(), 5000);
+      }
+    });
+  });
+
   let canPlaySound = true;
   function playAnnoySoundOnce() {
     const audio = document.getElementById("hover-sound");

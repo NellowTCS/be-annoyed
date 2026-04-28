@@ -3,10 +3,10 @@
 > (these are like 5 min todos haha for each)
 
 - [X] Random elements resize/move on hover
-- [ ] Text that slowly drifts or letters randomly capitalize
-- [ ] Fake loading spinners that appear everywhere
+- [X] Text that slowly drifts or letters randomly capitalize
+- [X] Fake loading spinners that appear everywhere
 - [ ] Inverted colors or blur filters that randomly activate
-- [ ] Elements that multiply when clicked (clone themselves)
+- [X] Elements that multiply when clicked (clone themselves)
 - [ ] Typing in text fields randomly inserts "oops" or deletes chars
 - [ ] Checkboxes that check/uncheck adjacent ones when toggled
 - [ ] Dropdowns that reset to random options
