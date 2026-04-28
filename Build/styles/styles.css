@@ -1,3 +1,49 @@
+.mouse-trail-annoy {
+    mix-blend-mode: lighten;
+    filter: blur(1.5px) brightness(0.85) saturate(1.3);
+    border: 2.5px solid #222b;
+    box-shadow: 0 0 18px 6px #181828cc, 0 0 10px 2px #e729d799, 0 0 2px 1px #2e4bff55;
+    background: radial-gradient(circle at 60% 40%, #181828 0%, #e729d7 55%, #2e4bff 100%);
+    transition: left 0.13s, top 0.13s, background 0.3s, box-shadow 0.3s;
+    pointer-events: none;
+    opacity: 0.82;
+}
+
+/* Fake progress bar styles */
+#fake-progress-container {
+    margin: 2em 0 1.5em 0;
+    padding: 1em 0.5em 0.5em 0.5em;
+    background: #fff7;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px #e729d733;
+    max-width: 400px;
+}
+
+.fake-progress-bar-bg {
+    width: 100%;
+    height: 22px;
+    background: #e0e0e0;
+    border-radius: 11px;
+    overflow: hidden;
+    margin: 0.5em 0 0.2em 0;
+    border: 2px solid #bb10ac44;
+}
+
+#fake-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #e729d7 0%, #2e4bff 100%);
+    border-radius: 11px 0 0 11px;
+    transition: width 0.7s cubic-bezier(0.4, 0.2, 0.6, 1.2);
+}
+
+#fake-progress-text {
+    font-size: 1.1em;
+    color: #bb10ac;
+    font-family: monospace;
+    margin-left: 0.5em;
+}
+
 body {
     background: linear-gradient(145deg, #e8e8e8 0%, #ffeedd 100%);
     font-family: 'Segoe UI', 'Comic Sans MS', sans-serif;
@@ -272,3 +318,4 @@ footer {
     margin-bottom: .7em;
     text-align: center;
 }
+

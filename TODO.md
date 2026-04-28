@@ -2,9 +2,14 @@
 
 > (these are like 5 min todos haha for each)
 
-- [ ] Fake progress bars that never complete
+- [X] Fake progress bars that never complete
 - [ ] Popup windows that multiply
-- [ ] Mouse trail that lags behind
+- [ ] adding like a input box with like many many many easter eggs
+    - typing in oops: "well guess you made a mistake", closes tab
+    - typing in easteregg: "did you really think it was going to be that easy"
+    - typing in github: "NOOO MY SOURCE CODEEEEE", redirects to the github
+    - typing in google: "I'm not a search engine", opens google
+- [X] Mouse trail that lags behind
 - [ ] Random font size/style changes
 - [ ] Fake system notifications
 - [ ] Elements that become draggable randomly
