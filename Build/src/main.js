@@ -18,6 +18,24 @@ window.onload = () => {
   setupFormAnnoyances(playAnnoySoundOnce, playPing);
   setupInputAnnoyances();
 
+  // Random invert/blur filter effect
+  setInterval(() => {
+    if (Math.random() > 0.93) {
+      const filters = [
+        'invert(1)',
+        'blur(2.5px)',
+        'invert(1) blur(2.5px)',
+        'contrast(1.7) blur(1.5px)',
+        'hue-rotate(180deg) invert(1)',
+      ];
+      const chosen = filters[Math.floor(Math.random() * filters.length)];
+      document.body.style.filter = chosen;
+      setTimeout(() => {
+        document.body.style.filter = '';
+      }, 700 + Math.random() * 900);
+    }
+  }, 2500);
+
   // Marquee color and text shifts
   const marq = document.getElementById("marquee-annoy");
 
@@ -374,4 +392,25 @@ window.onload = () => {
       setTimeout(() => (canPlaySound = true), 570);
     }
   }
+  // Random fake loading spinner
+  setInterval(() => {
+    if (Math.random() > 0.8) {
+      const spinner = document.createElement("div");
+      spinner.style.cssText = `
+        position: fixed;
+        width: 40px;
+        height: 40px;
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #3498db;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        left: ${Math.random() * 90}vw;
+        top: ${Math.random() * 90}vh;
+        z-index: 9999;
+        pointer-events: none;
+      `;
+      document.body.appendChild(spinner);
+      setTimeout(() => spinner.remove(), 3000 + Math.random() * 2000);
+    }
+  }, 4000);
 };
