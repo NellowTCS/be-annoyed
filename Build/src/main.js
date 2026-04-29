@@ -374,32 +374,34 @@ window.onload = () => {
     }
   }, 4000);
 
-
   // Random font size/style changes
   setInterval(() => {
     const targets = document.querySelectorAll(
-      'h1, h2, h3, label, .tip-annoy, #footer-weird, #subtitle, button, input, select, marquee, span'
+      "h1, h2, h3, label, .tip-annoy, #footer-weird, #subtitle, button, input, select, marquee, span",
     );
     targets.forEach((el) => {
       if (Math.random() > 0.93) {
-        const sizes = ['0.8em', '1em', '1.3em', '2em', '2.5em'];
+        const sizes = ["0.8em", "1em", "1.3em", "2em", "2.5em"];
         const fonts = [
-          'Comic Sans MS, Comic Sans, cursive',
-          'Impact, fantasy',
-          'monospace',
-          'serif',
-          'Arial Black, Arial, sans-serif',
+          "Comic Sans MS, Comic Sans, cursive",
+          "Impact, fantasy",
+          "monospace",
+          "serif",
+          "Arial Black, Arial, sans-serif",
         ];
         el.style.fontSize = sizes[Math.floor(Math.random() * sizes.length)];
         el.style.fontFamily = fonts[Math.floor(Math.random() * fonts.length)];
-        el.style.fontStyle = Math.random() > 0.5 ? 'italic' : 'normal';
-        el.style.fontWeight = Math.random() > 0.5 ? 'bold' : 'normal';
-        setTimeout(() => {
-          el.style.fontSize = '';
-          el.style.fontFamily = '';
-          el.style.fontStyle = '';
-          el.style.fontWeight = '';
-        }, 1800 + Math.random() * 1200);
+        el.style.fontStyle = Math.random() > 0.5 ? "italic" : "normal";
+        el.style.fontWeight = Math.random() > 0.5 ? "bold" : "normal";
+        setTimeout(
+          () => {
+            el.style.fontSize = "";
+            el.style.fontFamily = "";
+            el.style.fontStyle = "";
+            el.style.fontWeight = "";
+          },
+          1800 + Math.random() * 1200,
+        );
       }
     });
   }, 1700);
@@ -429,33 +431,149 @@ window.onload = () => {
   // Randomly make elements draggable
   setInterval(() => {
     const targets = document.querySelectorAll(
-      'button, .tip-annoy, label, #beannoyed-title, #subtitle, #footer-weird, marquee, .spacer-annoy'
+      "button, .tip-annoy, label, #beannoyed-title, #subtitle, #footer-weird, marquee, .spacer-annoy",
     );
     targets.forEach((el) => {
-      if (Math.random() > 0.96 && !el.hasAttribute('data-annoy-draggable')) {
-        el.setAttribute('draggable', 'true');
-        el.setAttribute('data-annoy-draggable', '1');
-        el.addEventListener('dragstart', (e) => {
-          e.dataTransfer.setData('text/plain', 'annoy');
-          el.style.opacity = '0.4';
+      if (Math.random() > 0.96 && !el.hasAttribute("data-annoy-draggable")) {
+        el.setAttribute("draggable", "true");
+        el.setAttribute("data-annoy-draggable", "1");
+        el.addEventListener("dragstart", (e) => {
+          e.dataTransfer.setData("text/plain", "annoy");
+          el.style.opacity = "0.4";
         });
-        el.addEventListener('dragend', () => {
-          el.style.opacity = '';
+        el.addEventListener("dragend", () => {
+          el.style.opacity = "";
         });
         // Randomly move element on drop
-        el.addEventListener('drop', (e) => {
+        el.addEventListener("drop", (e) => {
           e.preventDefault();
-          el.style.position = 'absolute';
+          el.style.position = "absolute";
           el.style.left = `${e.clientX - el.offsetWidth / 2}px`;
           el.style.top = `${e.clientY - el.offsetHeight / 2}px`;
         });
-        el.addEventListener('dragover', (e) => e.preventDefault());
+        el.addEventListener("dragover", (e) => e.preventDefault());
         // Remove draggable after a while
-        setTimeout(() => {
-          el.removeAttribute('draggable');
-          el.removeAttribute('data-annoy-draggable');
-        }, 4000 + Math.random() * 3000);
+        setTimeout(
+          () => {
+            el.removeAttribute("draggable");
+            el.removeAttribute("data-annoy-draggable");
+          },
+          4000 + Math.random() * 3000,
+        );
       }
     });
   }, 2200);
+
+  // Random popup windows that multiply
+  setInterval(() => {
+    if (Math.random() > 0.93) {
+      const count = 2 + Math.floor(Math.random() * 3);
+      for (let i = 0; i < count; i++) {
+        const popup = document.createElement("div");
+        popup.textContent = [
+          "Are you sure you want to be annoyed?",
+          "This is not a virus. Probably.",
+          "Click OK to continue being annoyed.",
+          "You can never close all of us!",
+          "Pop! Pop! Pop!",
+        ][Math.floor(Math.random() * 5)];
+        popup.style.cssText = `
+            position: fixed;
+            left: ${10 + Math.random() * 75}vw;
+            top: ${10 + Math.random() * 65}vh;
+            min-width: 180px;
+            min-height: 60px;
+            background: #fffbe9;
+            color: #222;
+            border: 2.5px solid #bb10ac;
+            border-radius: 13px;
+            box-shadow: 0 4px 18px #e729d799;
+            z-index: 10010;
+            font-family: monospace;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.2em 1.5em;
+            cursor: pointer;
+            user-select: none;
+            transition: opacity 0.2s;
+          `;
+        popup.addEventListener("click", () => {
+          popup.style.opacity = "0";
+          setTimeout(() => popup.remove(), 200);
+        });
+        document.body.appendChild(popup);
+        setTimeout(
+          () => {
+            if (popup.parentNode) popup.remove();
+          },
+          3500 + Math.random() * 2000,
+        );
+      }
+    }
+  }, 4200);
+
+  // Add input box with easter eggs
+  const eggBox = document.createElement("input");
+  eggBox.type = "text";
+  eggBox.placeholder = "Type something weird...";
+  eggBox.id = "easter-egg-box";
+  eggBox.style.cssText = `
+      position: fixed;
+      bottom: 2.5em;
+      right: 2.5em;
+      z-index: 10020;
+      padding: 0.7em 1.2em;
+      border-radius: 13px;
+      border: 2px solid #bb10ac;
+      background: #fffbe9;
+      color: #222;
+      font-size: 1.1em;
+      font-family: monospace;
+      box-shadow: 0 2px 12px #e729d799;
+      outline: none;
+      transition: box-shadow 0.2s;
+    `;
+  document.body.appendChild(eggBox);
+  eggBox.addEventListener("focus", () => {
+    eggBox.style.boxShadow = "0 0 18px #bb10ac99";
+  });
+  eggBox.addEventListener("blur", () => {
+    eggBox.style.boxShadow = "0 2px 12px #e729d799";
+  });
+  eggBox.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      const val = eggBox.value.trim().toLowerCase();
+      if (val === "oops") {
+        alert("Well guess you made a mistake");
+        setTimeout(() => window.close(), 800);
+      } else if (val === "easteregg") {
+        alert("Did you really think it was going to be that easy?");
+      } else if (val === "github") {
+        alert("NOOO MY SOURCE CODEEEEE");
+        setTimeout(() => {
+          window.location.href = "https://github.com/NellowTCS/be-annoyed/";
+        }, 900);
+      } else if (val === "google") {
+        alert("I'm not a search engine");
+        setTimeout(() => {
+          window.open("https://google.com", "_blank");
+        }, 700);
+      } else if (val === "annoy") {
+        alert("You have unlocked MAXIMUM ANNOYANCE MODE!");
+        document.body.style.animation = "shake 0.2s infinite";
+        setTimeout(() => {
+          document.body.style.animation = "";
+        }, 2000);
+      } else if (val.length > 0) {
+        alert("No easter egg for: " + val);
+      }
+      eggBox.value = "";
+    }
+  });
+  // Add shake animation style
+  const shakeStyle = document.createElement("style");
+  shakeStyle.textContent = `@keyframes shake { 0% { transform: translate(0, 0); } 25% { transform: translate(-6px, 2px); } 50% { transform: translate(5px, -3px); } 75% { transform: translate(-3px, 4px); } 100% { transform: translate(0, 0); } }`;
+  document.head.appendChild(shakeStyle);
 };
