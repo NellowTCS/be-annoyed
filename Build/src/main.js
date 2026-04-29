@@ -21,6 +21,7 @@ window.addEventListener("DOMContentLoaded", function () {
         alert("Not found (probably).");
       }, 1150);
     });
+
   document
     .getElementById("random-scroll-link")
     .addEventListener("click", function (e) {
@@ -28,6 +29,7 @@ window.addEventListener("DOMContentLoaded", function () {
       window.scrollTo(0, Math.floor(Math.random() * window.innerHeight * 2));
       playAnnoySoundOnce();
     });
+
   document
     .getElementById("rickroll-chance-link")
     .addEventListener("click", function (e) {
@@ -40,11 +42,14 @@ window.addEventListener("DOMContentLoaded", function () {
   // Fake progress bar that never completes
   const progressBar = document.getElementById("fake-progress-bar");
   const progressText = document.getElementById("fake-progress-text");
+
   let fakeProgress = 0;
+
   function updateFakeProgress() {
     // Progress slows as it gets closer to 99%
     if (fakeProgress < 98) {
-      const increment = Math.max(0.2, 2.5 - fakeProgress * 0.022) * (0.7 + Math.random() * 0.6);
+      const increment =
+        Math.max(0.2, 2.5 - fakeProgress * 0.022) * (0.7 + Math.random() * 0.6);
       fakeProgress = Math.min(fakeProgress + increment, 98 + Math.random());
       progressBar.style.width = fakeProgress.toFixed(1) + "%";
       progressText.textContent = Math.floor(fakeProgress) + "%";
@@ -56,61 +61,70 @@ window.addEventListener("DOMContentLoaded", function () {
     }
     setTimeout(updateFakeProgress, 700 + Math.random() * 900);
   }
+
   if (progressBar && progressText) updateFakeProgress();
 
   // Mouse trail that lags behind
   const trailLength = 14;
   const trailEls = [];
   const trailColors = [
-    '#e729d7', // magenta
-    '#2e4bff', // blue
-    '#66ccff', // cyan
-    '#bb10ac', // purple
-    '#f6ad49', // gold
-    '#b3c8ff', // pastel blue
-    '#ffc8fc', // pastel magenta
-    '#b3ffdf', // pastel green
+    "#e729d7", // magenta
+    "#2e4bff", // blue
+    "#66ccff", // cyan
+    "#bb10ac", // purple
+    "#f6ad49", // gold
+    "#b3c8ff", // pastel blue
+    "#ffc8fc", // pastel magenta
+    "#b3ffdf", // pastel green
   ];
+
   for (let i = 0; i < trailLength; i++) {
-    const el = document.createElement('div');
-    el.className = 'mouse-trail-annoy';
+    const el = document.createElement("div");
+    el.className = "mouse-trail-annoy";
     el.style.opacity = (0.18 + 0.55 * (i / trailLength)).toFixed(2);
-    el.style.pointerEvents = 'none';
-    el.style.position = 'fixed';
+    el.style.pointerEvents = "none";
+    el.style.position = "fixed";
     el.style.zIndex = 9999;
-    el.style.width = el.style.height = 14 + i * 2.2 + 'px';
-    el.style.borderRadius = '50%';
+    el.style.width = el.style.height = 14 + i * 2.2 + "px";
+    el.style.borderRadius = "50%";
     // Use a darker, more vibrant gradient
     const c1 = trailColors[i % trailColors.length];
     const c2 = trailColors[(i + 2) % trailColors.length];
     el.style.background = `radial-gradient(circle at 60% 40%, #181828 0%, ${c1} 55%, ${c2} 100%)`;
     el.style.boxShadow = `0 0 16px 4px #181828cc, 0 0 10px 2px ${c1}99, 0 0 2px 1px ${c2}55`;
-    el.style.transition = 'background 0.3s, box-shadow 0.3s';
+    el.style.transition = "background 0.3s, box-shadow 0.3s";
     document.body.appendChild(el);
     trailEls.push({ el, x: 0, y: 0 });
   }
-  let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
-  window.addEventListener('mousemove', e => {
+
+  let mouseX = window.innerWidth / 2,
+    mouseY = window.innerHeight / 2;
+
+  window.addEventListener("mousemove", (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
   });
+
   function animateTrail() {
-    let prevX = mouseX, prevY = mouseY;
+    let prevX = mouseX,
+      prevY = mouseY;
     for (let i = 0; i < trailLength; i++) {
       const t = trailEls[i];
       t.x += (prevX - t.x) * (0.22 - i * 0.008);
       t.y += (prevY - t.y) * (0.22 - i * 0.008);
-      t.el.style.left = (t.x - t.el.offsetWidth / 2) + 'px';
-      t.el.style.top = (t.y - t.el.offsetHeight / 2) + 'px';
+      t.el.style.left = t.x - t.el.offsetWidth / 2 + "px";
+      t.el.style.top = t.y - t.el.offsetHeight / 2 + "px";
       prevX = t.x;
       prevY = t.y;
     }
     requestAnimationFrame(animateTrail);
   }
+
   animateTrail();
 
   // Marquee color and text shifts
   const marq = document.getElementById("marquee-annoy");
+
   setInterval(() => {
     marq.style.color = [
       "#ac25aa",
@@ -140,8 +154,8 @@ window.addEventListener("DOMContentLoaded", function () {
   // Form: password is actually "text", field unselects itself
   // Checkbox sometimes unchecks itself and disables input
   const form = document.getElementById("beannoyed-form");
-  let uncheckTimer = 0;
   const annoyCheck = document.getElementById("annoy-mode");
+
   annoyCheck.addEventListener("mouseenter", () => {
     if (Math.random() > 0.5) {
       annoyCheck.checked = false;
@@ -152,6 +166,7 @@ window.addEventListener("DOMContentLoaded", function () {
       }, 1200);
     }
   });
+
   // Username input: selects all text then blurs
   document.getElementById("name-ish").addEventListener("focus", (e) => {
     e.target.select();
@@ -218,6 +233,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
   // Move button, escapes your cursor, then vibrates
   let moveBtn = document.getElementById("move-btn");
+
   moveBtn.addEventListener("mouseenter", () => {
     moveBtn.style.position = "absolute";
     moveBtn.style.left = Math.random() * 82 + 2 + "vw";
@@ -230,6 +246,7 @@ window.addEventListener("DOMContentLoaded", function () {
   let uslider = document.getElementById("useless-slider");
   let slabel = document.getElementById("slider-label");
   let sval = document.getElementById("slider-value");
+
   uslider.addEventListener("input", function (e) {
     setTimeout(
       () => {
@@ -250,6 +267,7 @@ window.addEventListener("DOMContentLoaded", function () {
         if (Math.random() > 0.5) inp.checked = false;
       });
     });
+
   document
     .getElementById("pay-now-btn")
     .addEventListener("click", function (e) {
@@ -272,6 +290,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
   // Footer: subtle flashing text
   const footerWeird = document.getElementById("footer-weird");
+
   setInterval(() => {
     footerWeird.style.color = [
       "#666",
@@ -301,6 +320,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
   // Subtle: input autocorrect toggling delayed
   let autos = document.querySelectorAll('input[type="text"]');
+
   autos.forEach((inp) => {
     setTimeout(
       () => {
@@ -331,6 +351,7 @@ window.addEventListener("DOMContentLoaded", function () {
   const annoyTargets = document.querySelectorAll(
     "button, input, select, .tip-annoy, label, h1, h2",
   );
+
   annoyTargets.forEach((el) => {
     el.addEventListener("mouseenter", () => {
       if (Math.random() > 0.3) {
@@ -356,28 +377,35 @@ window.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  const driftTargets = document.querySelectorAll("p, div, span, label, h1, h2, h3");
+  const driftTargets = document.querySelectorAll(
+    "p, div, span, label, h1, h2, h3",
+  );
+
   driftTargets.forEach((el) => {
-    if (el.id === "footer-weird" || el.classList.contains("tooltip-annoy")) return;
-    setInterval(() => {
-      if (Math.random() > 0.7) {
-        el.style.marginLeft = `${(Math.random() - 0.5) * 30}px`;
-        el.style.transition = "margin-left 0.5s ease";
-        setTimeout(() => (el.style.marginLeft = ""), 2000);
-      }
-      if (Math.random() > 0.8) {
-        el.textContent = el.textContent
-          .split("")
-          .map((c) => (Math.random() > 0.3 ? c : c.toUpperCase()))
-          .join("");
-        setTimeout(() => {
+    if (el.id === "footer-weird" || el.classList.contains("tooltip-annoy"))
+      return;
+    setInterval(
+      () => {
+        if (Math.random() > 0.7) {
+          el.style.marginLeft = `${(Math.random() - 0.5) * 30}px`;
+          el.style.transition = "margin-left 0.5s ease";
+          setTimeout(() => (el.style.marginLeft = ""), 2000);
+        }
+        if (Math.random() > 0.8) {
           el.textContent = el.textContent
             .split("")
-            .map((c) => c.toLowerCase())
+            .map((c) => (Math.random() > 0.3 ? c : c.toUpperCase()))
             .join("");
-        }, 1500);
-      }
-    }, 3000 + Math.random() * 2000);
+          setTimeout(() => {
+            el.textContent = el.textContent
+              .split("")
+              .map((c) => c.toLowerCase())
+              .join("");
+          }, 1500);
+        }
+      },
+      3000 + Math.random() * 2000,
+    );
   });
 
   setInterval(() => {
@@ -406,6 +434,7 @@ window.addEventListener("DOMContentLoaded", function () {
   document.head.appendChild(style);
 
   const cloneTargets = document.querySelectorAll("button, .tip-annoy, label");
+
   cloneTargets.forEach((el) => {
     el.addEventListener("click", (e) => {
       if (Math.random() > 0.5) {
@@ -461,7 +490,7 @@ window.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  document.addEventListener("mouseover", (e) => {
+  document.addEventListener("mouseover", () => {
     if (Math.random() > 0.95) {
       document.body.style.cursor = "wait";
       setTimeout(() => (document.body.style.cursor = ""), 800);
@@ -500,7 +529,8 @@ window.addEventListener("DOMContentLoaded", function () {
       );
       if (Math.random() > 0.5 && focusable.length > 0) {
         e.preventDefault();
-        const randomEl = focusable[Math.floor(Math.random() * focusable.length)];
+        const randomEl =
+          focusable[Math.floor(Math.random() * focusable.length)];
         randomEl.focus();
       }
     }
@@ -509,16 +539,22 @@ window.addEventListener("DOMContentLoaded", function () {
   setInterval(() => {
     if (Math.random() > 0.85) {
       document.body.style.filter = `brightness(${0.5 + Math.random() * 1.5})`;
-      setTimeout(() => (document.body.style.filter = ""), 300 + Math.random() * 500);
+      setTimeout(
+        () => (document.body.style.filter = ""),
+        300 + Math.random() * 500,
+      );
     }
   }, 2000);
 
   let originalTitle = document.title;
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) {
-      document.title = ["Hey come back!", "I miss you!", "Where you going?", "Don't leave me!"][
-        Math.floor(Math.random() * 4)
-      ];
+      document.title = [
+        "Hey come back!",
+        "I miss you!",
+        "Where you going?",
+        "Don't leave me!",
+      ][Math.floor(Math.random() * 4)];
     } else {
       document.title = originalTitle;
     }
@@ -541,6 +577,7 @@ window.addEventListener("DOMContentLoaded", function () {
   }, 3000);
 
   const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
   function playNailTap() {
     const oscillator = audioCtx.createOscillator();
     const gainNode = audioCtx.createGain();
@@ -705,7 +742,7 @@ window.addEventListener("DOMContentLoaded", function () {
       canPlaySound = false;
       audio.currentTime = 0;
       audio.volume = 0.16;
-      audio.play().catch(() => { });
+      audio.play().catch(() => {});
       setTimeout(() => (canPlaySound = true), 600);
     }
   }
@@ -715,7 +752,7 @@ window.addEventListener("DOMContentLoaded", function () {
       canPlaySound = false;
       audio.currentTime = 0;
       audio.volume = 0.12;
-      audio.play().catch(() => { });
+      audio.play().catch(() => {});
       setTimeout(() => (canPlaySound = true), 570);
     }
   }
