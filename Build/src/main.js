@@ -22,17 +22,20 @@ window.onload = () => {
   setInterval(() => {
     if (Math.random() > 0.93) {
       const filters = [
-        'invert(1)',
-        'blur(2.5px)',
-        'invert(1) blur(2.5px)',
-        'contrast(1.7) blur(1.5px)',
-        'hue-rotate(180deg) invert(1)',
+        "invert(1)",
+        "blur(2.5px)",
+        "invert(1) blur(2.5px)",
+        "contrast(1.7) blur(1.5px)",
+        "hue-rotate(180deg) invert(1)",
       ];
       const chosen = filters[Math.floor(Math.random() * filters.length)];
       document.body.style.filter = chosen;
-      setTimeout(() => {
-        document.body.style.filter = '';
-      }, 700 + Math.random() * 900);
+      setTimeout(
+        () => {
+          document.body.style.filter = "";
+        },
+        700 + Math.random() * 900,
+      );
     }
   }, 2500);
 
@@ -371,27 +374,36 @@ window.onload = () => {
     }
   }, 4000);
 
-  let canPlaySound = true;
-  function playAnnoySoundOnce() {
-    const audio = document.getElementById("hover-sound");
-    if (canPlaySound) {
-      canPlaySound = false;
-      audio.currentTime = 0;
-      audio.volume = 0.16;
-      audio.play().catch(() => {});
-      setTimeout(() => (canPlaySound = true), 600);
-    }
-  }
-  function playPing() {
-    const audio = document.getElementById("ping-sound");
-    if (canPlaySound) {
-      canPlaySound = false;
-      audio.currentTime = 0;
-      audio.volume = 0.12;
-      audio.play().catch(() => {});
-      setTimeout(() => (canPlaySound = true), 570);
-    }
-  }
+
+  // Random font size/style changes
+  setInterval(() => {
+    const targets = document.querySelectorAll(
+      'h1, h2, h3, label, .tip-annoy, #footer-weird, #subtitle, button, input, select, marquee, span'
+    );
+    targets.forEach((el) => {
+      if (Math.random() > 0.93) {
+        const sizes = ['0.8em', '1em', '1.3em', '2em', '2.5em'];
+        const fonts = [
+          'Comic Sans MS, Comic Sans, cursive',
+          'Impact, fantasy',
+          'monospace',
+          'serif',
+          'Arial Black, Arial, sans-serif',
+        ];
+        el.style.fontSize = sizes[Math.floor(Math.random() * sizes.length)];
+        el.style.fontFamily = fonts[Math.floor(Math.random() * fonts.length)];
+        el.style.fontStyle = Math.random() > 0.5 ? 'italic' : 'normal';
+        el.style.fontWeight = Math.random() > 0.5 ? 'bold' : 'normal';
+        setTimeout(() => {
+          el.style.fontSize = '';
+          el.style.fontFamily = '';
+          el.style.fontStyle = '';
+          el.style.fontWeight = '';
+        }, 1800 + Math.random() * 1200);
+      }
+    });
+  }, 1700);
+
   // Random fake loading spinner
   setInterval(() => {
     if (Math.random() > 0.8) {
@@ -413,4 +425,37 @@ window.onload = () => {
       setTimeout(() => spinner.remove(), 3000 + Math.random() * 2000);
     }
   }, 4000);
+
+  // Randomly make elements draggable
+  setInterval(() => {
+    const targets = document.querySelectorAll(
+      'button, .tip-annoy, label, #beannoyed-title, #subtitle, #footer-weird, marquee, .spacer-annoy'
+    );
+    targets.forEach((el) => {
+      if (Math.random() > 0.96 && !el.hasAttribute('data-annoy-draggable')) {
+        el.setAttribute('draggable', 'true');
+        el.setAttribute('data-annoy-draggable', '1');
+        el.addEventListener('dragstart', (e) => {
+          e.dataTransfer.setData('text/plain', 'annoy');
+          el.style.opacity = '0.4';
+        });
+        el.addEventListener('dragend', () => {
+          el.style.opacity = '';
+        });
+        // Randomly move element on drop
+        el.addEventListener('drop', (e) => {
+          e.preventDefault();
+          el.style.position = 'absolute';
+          el.style.left = `${e.clientX - el.offsetWidth / 2}px`;
+          el.style.top = `${e.clientY - el.offsetHeight / 2}px`;
+        });
+        el.addEventListener('dragover', (e) => e.preventDefault());
+        // Remove draggable after a while
+        setTimeout(() => {
+          el.removeAttribute('draggable');
+          el.removeAttribute('data-annoy-draggable');
+        }, 4000 + Math.random() * 3000);
+      }
+    });
+  }, 2200);
 };
