@@ -8,7 +8,7 @@ export function setupSounds() {
       canPlaySound = false;
       audio.currentTime = 0;
       audio.volume = 0.16;
-      audio.play().catch(() => { });
+      audio.play().catch(() => {});
       setTimeout(() => (canPlaySound = true), 600);
     }
   }
@@ -18,7 +18,7 @@ export function setupSounds() {
       canPlaySound = false;
       audio.currentTime = 0;
       audio.volume = 0.12;
-      audio.play().catch(() => { });
+      audio.play().catch(() => {});
       setTimeout(() => (canPlaySound = true), 570);
     }
   }

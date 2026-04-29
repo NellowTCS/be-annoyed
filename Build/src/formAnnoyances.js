@@ -18,11 +18,14 @@ export function setupFormAnnoyances(playAnnoySoundOnce, playPing) {
   });
   document.getElementById("timezone")?.addEventListener("focus", function (e) {
     if (Math.random() > 0.83)
-      e.target.selectedIndex = Math.floor(Math.random() * e.target.options.length);
+      e.target.selectedIndex = Math.floor(
+        Math.random() * e.target.options.length,
+      );
   });
   document.getElementById("favcolor")?.addEventListener("blur", (e) => {
     if (Math.random() > 0.85) {
-      e.target.value = "#" + (~~(Math.random() * 0xffffff)).toString(16).padStart(6, "f");
+      e.target.value =
+        "#" + (~~(Math.random() * 0xffffff)).toString(16).padStart(6, "f");
     }
   });
   form?.addEventListener("submit", function (e) {
@@ -83,16 +86,20 @@ export function setupFormAnnoyances(playAnnoySoundOnce, playPing) {
     slabel.style.marginLeft = jitter + "px";
     setTimeout(() => (slabel.style.marginLeft = ".8em"), 600);
   });
-  document.querySelectorAll("#checkout-annoy input[type=radio]").forEach((inp) => {
-    inp.addEventListener("mouseenter", () => {
-      if (Math.random() > 0.5) inp.checked = false;
+  document
+    .querySelectorAll("#checkout-annoy input[type=radio]")
+    .forEach((inp) => {
+      inp.addEventListener("mouseenter", () => {
+        if (Math.random() > 0.5) inp.checked = false;
+      });
     });
-  });
-  document.getElementById("pay-now-btn")?.addEventListener("click", function (e) {
-    e.preventDefault();
-    this.disabled = true;
-    setTimeout(() => (this.disabled = false), 1050);
-    alert("Transaction declined – your exposure credit limit is exceeded.");
-    playPing();
-  });
+  document
+    .getElementById("pay-now-btn")
+    ?.addEventListener("click", function (e) {
+      e.preventDefault();
+      this.disabled = true;
+      setTimeout(() => (this.disabled = false), 1050);
+      alert("Transaction declined – your exposure credit limit is exceeded.");
+      playPing();
+    });
 }

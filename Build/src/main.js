@@ -6,18 +6,17 @@ import { setupFormAnnoyances } from "./formAnnoyances.js";
 import { setupMarqueeAndFooter } from "./marqueeFooter.js";
 import { setupInputAnnoyances } from "./inputAnnoyances.js";
 
-// Setup sound functions and inject into navigation
-const { playAnnoySoundOnce, playPing, playNailTap } = setupSounds();
+// Setup sound functions
+const { playAnnoySoundOnce, playPing } = setupSounds();
 
-// Patch navigation.js to use real sound functions
-import * as nav from "./navigation.js";
-nav.playAnnoySoundOnce = playAnnoySoundOnce;
-nav.playPing = playPing;
-
+// Pass sound functions to navigation if needed in future
 setupNavigation();
 window.addEventListener("DOMContentLoaded", () => {
   setupFakeProgress();
   setupMouseTrail();
+  setupMarqueeAndFooter();
+  setupFormAnnoyances(playAnnoySoundOnce, playPing);
+  setupInputAnnoyances();
 
   // Marquee color and text shifts
   const marq = document.getElementById("marquee-annoy");
@@ -47,7 +46,6 @@ window.addEventListener("DOMContentLoaded", () => {
         "Why? Just, why?",
       ][Math.floor(Math.random() * 5)];
   }, 1300);
-
 
   const style = document.createElement("style");
   style.textContent = `@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }`;
