@@ -37,6 +37,16 @@ window.onload = () => {
         700 + Math.random() * 900,
       );
     }
+    // Random page zoom changes
+    if (Math.random() > 0.96) {
+      const zoomLevels = [0.85, 0.9, 1.1, 1.15, 1.2, 0.8];
+      const chosenZoom = zoomLevels[Math.floor(Math.random() * zoomLevels.length)];
+      document.body.style.transition = "transform 0.3s cubic-bezier(.68,-0.55,.27,1.55)";
+      document.body.style.transform = `scale(${chosenZoom})`;
+      setTimeout(() => {
+        document.body.style.transform = "";
+      }, 700 + Math.random() * 900);
+    }
   }, 2500);
 
   // Marquee color and text shifts
