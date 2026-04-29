@@ -11,7 +11,7 @@ const { playAnnoySoundOnce, playPing } = setupSounds();
 
 // Pass sound functions to navigation if needed in future
 setupNavigation();
-window.addEventListener("DOMContentLoaded", () => {
+window.onload = () => {
   setupFakeProgress();
   setupMouseTrail();
   setupMarqueeAndFooter();
@@ -374,4 +374,4 @@ window.addEventListener("DOMContentLoaded", () => {
       setTimeout(() => (canPlaySound = true), 570);
     }
   }
-});
+};
