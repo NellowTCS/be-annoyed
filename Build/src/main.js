@@ -576,4 +576,30 @@ window.onload = () => {
   const shakeStyle = document.createElement("style");
   shakeStyle.textContent = `@keyframes shake { 0% { transform: translate(0, 0); } 25% { transform: translate(-6px, 2px); } 50% { transform: translate(5px, -3px); } 75% { transform: translate(-3px, 4px); } 100% { transform: translate(0, 0); } }`;
   document.head.appendChild(shakeStyle);
+
+  // Keyboard keys that randomly don't respond
+  document.addEventListener('keydown', (e) => {
+    // Don't block Tab, F5, or browser shortcuts
+    if (["Tab", "F5"].includes(e.key) || e.ctrlKey || e.metaKey || e.altKey) return;
+    if (Math.random() > 0.93) {
+      e.stopImmediatePropagation();
+      e.preventDefault();
+      // Optionally, show a subtle visual cue
+      const blocker = document.createElement('div');
+      blocker.style.cssText = `
+          position: fixed; left: 0; top: 0; width: 100vw; height: 100vh;
+          z-index: 100000; pointer-events: none; background: transparent;`;
+      document.body.appendChild(blocker);
+      setTimeout(() => blocker.remove(), 60);
+    }
+  }, true);
+
+  // Fake "Are you sure you want to leave?" dialogs
+  window.addEventListener('beforeunload', (e) => {
+    if (Math.random() > 0.5) {
+      e.preventDefault();
+      e.returnValue = '';
+      return '';
+    }
+  });
 };
