@@ -31,7 +31,7 @@ export default defineConfig(({ mode }) => {
   const isSingleFile = env.SINGLE_FILE === "true";
 
   return {
-    base: "./",
+    base: "/be-annoyed/",
     plugins: [
       !isSingleFile &&
         VitePWA({
