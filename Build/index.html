@@ -10,6 +10,28 @@
 </head>
 
 <body>
+  <div id="epilepsy-warning" style="
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 999999;
+    font-family: sans-serif;
+    text-align: center;
+  ">
+    <div style="max-width:720px; padding: 24px;">
+      <h2 style="margin:0 0 12px;">Flash & Motion Warning</h2>
+      <p style="margin:0 0 18px; font-size:1.05em;">This site intentionally uses flashing, shaking, and rapid motion. If you are sensitive to these effects, please go back now.</p>
+      <div style="display:flex; gap:12px; justify-content:center; margin-top:14px;">
+        <button id="warning-continue" style="padding:10px 16px; background:#22c55e; border:0; color:#001; border-radius:8px; cursor:pointer; font-weight:700;">I accept the chaos</button>
+        <button id="warning-cancel" style="padding:10px 16px; background:#ef4444; border:0; color:white; border-radius:8px; cursor:pointer;">No, take me back</button>
+      </div>
+    </div>
+  </div>
   <marquee scrollamount="21" direction="right" id="marquee-annoy">
     Okay, but why are you here?
   </marquee>
@@ -112,6 +134,24 @@
     </marquee>
   </footer>
 
+  <script>
+    (function(){
+      const overlay = document.getElementById('epilepsy-warning');
+      if (!overlay) return;
+      const cont = document.getElementById('warning-continue');
+      const cancel = document.getElementById('warning-cancel');
+      window.ANNOYANCE_ALLOWED = false;
+      window._deferredStart = null;
+      cont.addEventListener('click', function(){
+        window.ANNOYANCE_ALLOWED = true;
+        overlay.remove();
+        try { if (typeof window._deferredStart === 'function') { window._deferredStart(); window._deferredStart = null; } } catch(e) { console.error(e); }
+      });
+      cancel.addEventListener('click', function(){
+        try { window.open('https://github.com/NellowTCS/be-annoyed/','_blank'); } catch(e) { window.location.href = 'https://github.com/NellowTCS/be-annoyed/'; }
+      });
+    })();
+  </script>
   <script type="module" src="./src/main.js" defer></script>
 </body>
 

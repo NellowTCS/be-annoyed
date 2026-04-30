@@ -11,7 +11,7 @@ const { playAnnoySoundOnce, playPing } = setupSounds();
 
 // Pass sound functions to navigation if needed in future
 setupNavigation();
-window.onload = () => {
+function startAnnoyanceEngine() {
   setupFakeProgress();
   setupMouseTrail();
   setupMarqueeAndFooter();
@@ -612,4 +612,11 @@ window.onload = () => {
       return '';
     }
   });
-};
+}
+
+// If user already allowed, start immediately; otherwise store starter for the overlay to call
+if (window.ANNOYANCE_ALLOWED) {
+  startAnnoyanceEngine();
+} else {
+  window._deferredStart = startAnnoyanceEngine;
+}
